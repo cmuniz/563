@@ -34,23 +34,31 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room mazmorras, taberna, bodega, torreEste, torreOeste, pasadizo, pasilloSur, pasilloNorte, torturas;
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        mazmorras = new Room("mazmorras");
+        torturas = new Room("torturas");
+        bodega = new Room("bodega");
+        taberna = new Room("taberna");
+        torreEste = new Room("torre este");
+        torreOeste = new Room("torre oeste");
+        pasadizo = new Room("pasadizo");
+        pasilloSur = new Room("pasillo sur");
+        pasilloNorte = new Room("pasillo norte");
         
         // initialise room exits
-        outside.setExits(null, theater, lab, pub);
-        theater.setExits(null, null, null, outside);
-        pub.setExits(null, outside, null, null);
-        lab.setExits(outside, office, null, null);
-        office.setExits(null, null, null, lab);
+        mazmorras.setExits(null, null, null, pasilloNorte);
+        bodega.setExits(null, null, taberna, null);
+        taberna.setExits(bodega, null, pasilloNorte, null);
+        torreEste.setExits(null, null, null, pasilloSur);
+        torreOeste.setExits(null, pasilloSur, null, null);
+        pasadizo.setExits(pasilloNorte, null, pasilloSur, null);
+        pasilloSur.setExits(pasadizo, torreEste, null, torreOeste);
+        pasilloNorte.setExits(taberna, mazmorras, pasadizo, torturas);
+        torturas.setExits(null, pasilloNorte, null, null);
 
-        currentRoom = outside;  // start game outside
+        currentRoom = torreEste;  // start game outside
     }
 
     /**

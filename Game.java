@@ -49,15 +49,16 @@ public class Game
         escaleras = new Room("escaleras");
 
         // initialise room exits
-        mazmorras.setExits(null, null, null, pasilloNorte, null);
-        bodega.setExits(null, null, taberna, null, null);
-        taberna.setExits(bodega, null, pasilloNorte, null, null);
-        torreEste.setExits(null, null, null, pasilloSur, escaleras);
-        torreOeste.setExits(null, pasilloSur, null, null, null);
-        pasadizo.setExits(pasilloNorte, null, pasilloSur, null, null);
-        pasilloSur.setExits(pasadizo, torreEste, null, torreOeste, null);
-        pasilloNorte.setExits(taberna, mazmorras, pasadizo, torturas, null);
-        torturas.setExits(null, pasilloNorte, null, null, null);
+        mazmorras.setExits(null, null, null, pasilloNorte, null, null);
+        bodega.setExits(null, null, taberna, null, null, null);
+        taberna.setExits(bodega, null, pasilloNorte, null, null, null);
+        torreEste.setExits(null, null, null, pasilloSur, escaleras, null);
+        torreOeste.setExits(null, pasilloSur, null, null, null, null);
+        pasadizo.setExits(pasilloNorte, null, pasilloSur, null, null, null);
+        pasilloSur.setExits(pasadizo, torreEste, null, torreOeste, null, null);
+        pasilloNorte.setExits(taberna, mazmorras, pasadizo, torturas, null, null);
+        torturas.setExits(null, pasilloNorte, null, null, null, null);
+        escaleras.setExits(null, null, null, null, null, torreEste);
 
         currentRoom = torreEste;  // start game outside
     }

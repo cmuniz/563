@@ -49,18 +49,28 @@ public class Game
         escaleras = new Room("escaleras");
 
         // initialise room exits
-        mazmorras.setExits(null, null, null, pasilloNorte, null, null);
-        bodega.setExits(null, null, taberna, null, null, null);
-        taberna.setExits(bodega, null, pasilloNorte, null, null, null);
-        torreEste.setExits(null, null, null, pasilloSur, escaleras, null);
-        torreOeste.setExits(null, pasilloSur, null, null, null, null);
-        pasadizo.setExits(pasilloNorte, null, pasilloSur, null, null, null);
-        pasilloSur.setExits(pasadizo, torreEste, null, torreOeste, null, null);
-        pasilloNorte.setExits(taberna, mazmorras, pasadizo, torturas, null, null);
-        torturas.setExits(null, pasilloNorte, null, null, null, null);
-        escaleras.setExits(null, null, null, null, null, torreEste);
+        // (Room north, Room east, Room south, Room west, Room southEast, Room northWest) 
+        
+        mazmorras.setExit("west", pasilloNorte);
+        bodega.setExit("south", taberna);
+        taberna.setExit("north", bodega);
+        taberna.setExit("south", pasilloNorte);
+        torreEste.setExit("west", pasilloSur);
+        torreEste.setExit("southeast", escaleras);
+        torreOeste.setExit("east", pasilloSur);
+        pasadizo.setExit("north", pasilloNorte);
+        pasadizo.setExit("south", pasilloSur);
+        pasilloSur.setExit("norht", pasadizo);
+        pasilloSur.setExit("east", torreEste);
+        pasilloSur.setExit("west", torreOeste);
+        pasilloNorte.setExit("north", taberna);
+        pasilloNorte.setExit("east", mazmorras);
+        pasilloNorte.setExit("south", pasadizo);
+        pasilloNorte.setExit("west", torturas);
+        torturas.setExit("east", pasilloNorte);
+        escaleras.setExit("northwest", torreEste);
 
-        currentRoom = torreEste;  // start game outside
+        currentRoom = escaleras;  // start game outside
     }
 
     /**

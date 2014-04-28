@@ -69,6 +69,6 @@ public class Room
      * @return A description of the room, including exits.
      */
     public String getLongDescription(){
-        return "You are in the " + this.description + "\n" + getExitString();
+        return "You are in the " + getDescription() + "\n" + getExitString();
     }
 }

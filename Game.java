@@ -50,7 +50,7 @@ public class Game
 
         // initialise room exits
         // (Room north, Room east, Room south, Room west, Room southEast, Room northWest) 
-        
+
         mazmorras.setExit("west", pasilloNorte);
         bodega.setExit("south", taberna);
         taberna.setExit("north", bodega);
@@ -206,7 +206,6 @@ public class Game
     }
 
     private void printLocationInfo(){
-        System.out.println("You are " + currentRoom.getDescription());
-        System.out.println(currentRoom.getExitString());
+        System.out.println(currentRoom.getLongDescription() + "\n");
     }
 }

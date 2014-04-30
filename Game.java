@@ -37,16 +37,16 @@ public class Game
         Room mazmorras, taberna, bodega, torreEste, torreOeste, pasadizo, pasilloSur, pasilloNorte, torturas, escaleras;
 
         // create the rooms
-        mazmorras = new Room("mazmorras");
-        torturas = new Room("torturas");
-        bodega = new Room("bodega");
-        taberna = new Room("taberna");
-        torreEste = new Room("torre este");
-        torreOeste = new Room("torre oeste");
-        pasadizo = new Room("pasadizo");
-        pasilloSur = new Room("pasillo sur");
-        pasilloNorte = new Room("pasillo norte");
-        escaleras = new Room("escaleras");
+        mazmorras = new Room("mazmorras", "pala", 5);
+        torturas = new Room("torturas", "grilletes", 4);
+        bodega = new Room("bodega", "vino especiado", 1);
+        taberna = new Room("taberna", "caliz", 1);
+        torreEste = new Room("torre este", "silla", 7);
+        torreOeste = new Room("torre oeste", "huevo de dragon", 10);
+        pasadizo = new Room("pasadizo", "llave", 1);
+        pasilloSur = new Room("pasillo sur", "espada", 8);
+        pasilloNorte = new Room("pasillo norte", "pergamino", 0);
+        escaleras = new Room("escaleras", "tablon", 3);
 
         // initialise room exits
         // (Room north, Room east, Room south, Room west, Room southEast, Room northWest) 

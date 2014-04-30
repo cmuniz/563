@@ -37,19 +37,19 @@ public class Game
         Room mazmorras, taberna, bodega, torreEste, torreOeste, pasadizo, pasilloSur, pasilloNorte, torturas, escaleras;
 
         // create the rooms
-        mazmorras = new Room("mazmorras", "pala", 5);
-        torturas = new Room("torturas", "grilletes", 4);
-        bodega = new Room("bodega", "vino especiado", 1);
-        taberna = new Room("taberna", "caliz", 1);
-        torreEste = new Room("torre este", "silla", 7);
-        torreOeste = new Room("torre oeste", "huevo de dragon", 10);
-        pasadizo = new Room("pasadizo", "llave", 1);
-        pasilloSur = new Room("pasillo sur", "espada", 8);
-        pasilloNorte = new Room("pasillo norte", "pergamino", 0);
-        escaleras = new Room("escaleras", "tablon", 3);
+        mazmorras = new Room("mazmorras");//, 
+        torturas = new Room("torturas");//, "grilletes", 4);
+        bodega = new Room("bodega");//, "vino especiado", 1);
+        taberna = new Room("taberna");//, "caliz", 1);
+        torreEste = new Room("torre este");//, "silla", 7);
+        torreOeste = new Room("torre oeste");//, "huevo de dragon", 10);
+        pasadizo = new Room("pasadizo");//, "llave", 1);
+        pasilloSur = new Room("pasillo sur");//, "espada", 8);
+        pasilloNorte = new Room("pasillo norte");//, "pergamino", 0);
+        escaleras = new Room("escaleras");//, "tablon", 3);
 
-        // initialise room exits
-        // (Room north, Room east, Room south, Room west, Room southEast, Room northWest) 
+            // initialise room exits
+            // (Room north, Room east, Room south, Room west, Room southEast, Room northWest) 
 
         mazmorras.setExit("west", pasilloNorte);
         bodega.setExit("south", taberna);
@@ -69,6 +69,17 @@ public class Game
         pasilloNorte.setExit("west", torturas);
         torturas.setExit("east", pasilloNorte);
         escaleras.setExit("northwest", torreEste);
+        
+        mazmorras.addItem(new Item("pala", 5));
+        torturas.addItem(new Item("grilletes", 4));
+        bodega.addItem(new Item("vino especiado", 1));
+        taberna.addItem(new Item("caliz", 1));
+        torreEste.addItem(new Item("silla", 7));
+        torreOeste.addItem(new Item("huevo de dragon", 10));
+        pasadizo.addItem(new Item("llave", 1));
+        pasilloSur.addItem(new Item("espada", 8));
+        pasilloNorte.addItem(new Item("pergamino", 0));
+        escaleras.addItem(new Item("tablon", 3));
 
         currentRoom = escaleras;  // start game outside
     }

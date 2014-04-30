@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * Class Room - a room in an adventure game.
@@ -18,8 +19,7 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> salidas;
-    private String item;
-    private int peso;
+    private ArrayList<Item> items;
 
     /**
      * Create a room described "description". Initially, it has
@@ -27,12 +27,11 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description, String item, int peso) 
+    public Room(String description) 
     {
         this.description = description;
-        this.item = item;
-        this.peso = peso;
         salidas = new HashMap<>();
+        items = new ArrayList<>();
     }
 
     /**
@@ -42,6 +41,18 @@ public class Room
      */
     public void setExit(String direction, Room neighbor){
         salidas.put(direction, neighbor);
+    }
+    
+    public void addItem(Item item){
+        items.add(item);
+    }
+    
+    public Item getItem(int index){
+        return items.get(index);
+    }
+    
+    public ArrayList<Item> getItems(){
+        return items;
     }
 
     /**
@@ -65,17 +76,13 @@ public class Room
     public String getExitString(){
         return "Exits: " + salidas.keySet();
     }
-    
-    public String getItem(){
-        return item;
-    }
-    
-    public int getPeso(){
-        return peso;
-    }
-    
-    public String infoObjeto(){
-        return getItem() + "; peso: " + getPeso();
+
+    public String infoObjetos(){
+        String info = "Objetos:\n";
+        for(Item item : items){
+            info += item.toString() + "\n";
+        }
+        return info;
     }
 
     /**
@@ -85,7 +92,7 @@ public class Room
      * @return A description of the room, including exits.
      */
     public String getLongDescription(){
-        return "You are in the " + getDescription() + "\n" + getExitString() + "\n" +
-            infoObjeto();
+        return "You are in the " + getDescription() + "\n" + getExitString() + "\n" + infoObjetos()        ;
     }
+
 }

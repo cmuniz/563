@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -19,7 +21,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private Room previusRoom;
+    private Stack<Room> previusRoom;
 
     /**
      * Create the game and initialise its internal map.
@@ -28,6 +30,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        previusRoom = new Stack<>();
     }
 
     /**
@@ -49,8 +52,8 @@ public class Game
         pasilloNorte = new Room("pasillo norte");//, "pergamino", 0);
         escaleras = new Room("escaleras");//, "tablon", 3);
 
-            // initialise room exits
-            // (Room north, Room east, Room south, Room west, Room southEast, Room northWest) 
+        // initialise room exits
+        // (Room north, Room east, Room south, Room west, Room southEast, Room northWest) 
 
         mazmorras.setExit("west", pasilloNorte);
         bodega.setExit("south", taberna);
@@ -70,7 +73,7 @@ public class Game
         pasilloNorte.setExit("west", torturas);
         torturas.setExit("east", pasilloNorte);
         escaleras.setExit("northwest", torreEste);
-        
+
         mazmorras.addItem(new Item("pala", 5));
         torturas.addItem(new Item("grilletes", 4));
         bodega.addItem(new Item("vino especiado", 1));
@@ -182,12 +185,12 @@ public class Game
             return;
         }
         Room nextRoom = currentRoom.getExit(command.getSecondWord());
- 
+
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
         else {
-            previusRoom = currentRoom;
+            previusRoom.push(currentRoom);
             currentRoom = nextRoom;
             printLocationInfo();
         }
@@ -216,9 +219,14 @@ public class Game
     private void eat(){
         System.out.println("You have eaten now and you are not hungry any more");
     }
-    
+
     private void back(){
-        currentRoom = previusRoom;
-        printLocationInfo();
+        if(!previusRoom.empty()){
+            currentRoom = previusRoom.pop();
+            printLocationInfo();
+        }
+        else{
+            System.out.println("No se puede ir más atrás. Ya está en el inicio");
+        }
     }
 }

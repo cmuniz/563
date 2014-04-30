@@ -19,6 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Room previusRoom;
 
     /**
      * Create the game and initialise its internal map.
@@ -145,6 +146,9 @@ public class Game
         else if(commandWord.equals("eat")){
             eat();
         }
+        else if(commandWord.equals("back")){
+            back();
+        }
 
         return wantToQuit;
     }
@@ -178,30 +182,12 @@ public class Game
             return;
         }
         Room nextRoom = currentRoom.getExit(command.getSecondWord());
-        //         String direction = command.getSecondWord();
-        // 
-        //         // Try to leave current room.
-        //         Room nextRoom = null;
-        //         if(direction.equals("north")) {
-        //             nextRoom = currentRoom.northExit;
-        //         }
-        //         if(direction.equals("east")) {
-        //             nextRoom = currentRoom.eastExit;
-        //         }
-        //         if(direction.equals("south")) {
-        //             nextRoom = currentRoom.southExit;
-        //         }
-        //         if(direction.equals("west")) {
-        //             nextRoom = currentRoom.westExit;
-        //         }
-        //         if(direction.equals("southeast")) {
-        //             nextRoom = currentRoom.southEastExit;
-        //         }
-
+ 
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
         else {
+            previusRoom = currentRoom;
             currentRoom = nextRoom;
             printLocationInfo();
         }
@@ -229,5 +215,10 @@ public class Game
 
     private void eat(){
         System.out.println("You have eaten now and you are not hungry any more");
+    }
+    
+    private void back(){
+        currentRoom = previusRoom;
+        printLocationInfo();
     }
 }

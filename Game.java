@@ -170,7 +170,6 @@ public class Game
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
-        //         System.out.println("   go quit help");
     }
 
     /** 

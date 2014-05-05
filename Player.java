@@ -20,7 +20,7 @@ public class Player
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
      */
-    private void goRoom(Command command) 
+    public void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
@@ -39,15 +39,15 @@ public class Player
         }
     }
 
-    private void printLocationInfo(){
+    public void printLocationInfo(){
         System.out.println(currentRoom.getLongDescription() + "\n");
     }
 
-    private void eat(){
+    public void eat(){
         System.out.println("You have eaten now and you are not hungry any more");
     }
 
-    private void back(){
+    public void back(){
         if(!previusRoom.empty()){
             currentRoom = previusRoom.pop();
             printLocationInfo();

@@ -61,4 +61,36 @@ public class Player
         }
 
     }
+
+    public void take(Item item){       
+        if(item.getTransportable()){
+            if(pesoTotal() +  item.getPeso() <= PESO_MAX){
+                items.add(item);
+            }
+            else{
+                System.out.println("No puede llevar este objeto. Debe soltar algun objeto");
+            }
+        }
+        else{
+            System.out.println("El item no se puede coger");
+        }
+    }
+
+    public Item drop(int index){
+        return items.remove(index);
+    }
+
+    public void items(){
+        for(Item item : items){
+            System.out.println(item.toString());
+        }
+    }
+
+    private int pesoTotal(){
+        int peso = 0;
+        for(Item item : items){
+            peso += item.getPeso();
+        }
+        return peso;
+    }
 }

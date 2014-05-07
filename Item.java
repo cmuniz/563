@@ -9,10 +9,12 @@ public class Item
 {
     private String description;
     private int peso;
+    private boolean transportable;
     
-    public Item(String description, int peso){
+    public Item(String description, int peso, boolean transportable){
         this.description = description;
         this.peso = peso;
+        this.transportable = transportable;
     }
     
     public String getDescription(){
@@ -27,4 +29,7 @@ public class Item
         return getDescription() + "; peso: " + getPeso();
     }
 
+    public boolean getTransportable(){
+        return transportable;
+    }
 }

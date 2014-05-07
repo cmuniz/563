@@ -1,4 +1,5 @@
 import java.util.Stack;
+import java.util.ArrayList;
 
 /**
  * Write a description of class Player here.
@@ -10,10 +11,13 @@ public class Player
 {
     private Room currentRoom;
     private Stack<Room> previusRoom;
+    private ArrayList<Item> items;
+    public static final int PESO_MAX = 15;
 
     public Player(Room currentRoom){
         this.currentRoom = currentRoom;
         previusRoom = new Stack<>();
+        items = new ArrayList<>(); 
     }
 
     /** 

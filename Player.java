@@ -62,27 +62,51 @@ public class Player
 
     }
 
-    public void take(Item item){       
-        if(item.getTransportable()){
-            if(pesoTotal() +  item.getPeso() <= PESO_MAX){
-                items.add(item);
+    public void take(Command command){ 
+        if(!command.hasSecondWord()) {
+            // if there is no second word, we don't know where to go...
+            System.out.println("Take what?");
+            return;
+        }
+
+        Item item = currentRoom.getItem(command.getSecondWord());
+
+        if(item != null){
+            if(item.getTransportable()){
+                if(pesoTotal() +  item.getPeso() <= PESO_MAX){
+                    items.add(item);
+                    currentRoom.removeItem(item);
+                }
+                else{
+                    System.out.println("No puede llevar este objeto. Debe soltar algun objeto");
+                }
             }
             else{
-                System.out.println("No puede llevar este objeto. Debe soltar algun objeto");
+                System.out.println("El item no se puede coger");
             }
         }
-        else{
-            System.out.println("El item no se puede coger");
+        else {
+            System.out.println("No existe el item");
         }
     }
 
-    public Item drop(int index){
-        return items.remove(index);
+    public Item drop(Command command){
+        if(!command.hasSecondWord()) {
+            // if there is no second word, we don't know where to go...
+            System.out.println("Take what?");
+            return null;
+        }
+        Item item = getItem(command.getSecondWord());
+
+        items.remove(item);
+        
+        return item;
     }
 
     public void items(){
         for(Item item : items){
             System.out.println(item.toString());
+            System.out.println("Peso total: " + pesoTotal());
         }
     }
 
@@ -92,5 +116,18 @@ public class Player
             peso += item.getPeso();
         }
         return peso;
+    }
+
+    public Item getItem(String description){
+        for(Item item : items){
+            if(item.getDescription().equals(description)){
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public Room getCurrentRoom(){
+        return currentRoom;
     }
 }

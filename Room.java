@@ -42,17 +42,26 @@ public class Room
     public void setExit(String direction, Room neighbor){
         salidas.put(direction, neighbor);
     }
-    
+
     public void addItem(Item item){
         items.add(item);
     }
-    
+
     public Item getItem(int index){
         return items.get(index);
     }
+
+    public Item getItem(String description){
+        for(Item item : items){
+            if(item.getDescription().equals(description)){
+                return item;
+            }
+        }
+        return null;
+    }
     
-    public ArrayList<Item> getItems(){
-        return items;
+    public void removeItem(Item item){
+        items.remove(item);
     }
 
     /**

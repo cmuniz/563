@@ -73,16 +73,16 @@ public class Game
         torturas.setExit("east", pasilloNorte);
         escaleras.setExit("northwest", torreEste);
 
-        mazmorras.addItem(new Item("pala", 5));
-        torturas.addItem(new Item("grilletes", 4));
-        bodega.addItem(new Item("vino especiado", 1));
-        taberna.addItem(new Item("caliz", 1));
-        torreEste.addItem(new Item("silla", 7));
-        torreOeste.addItem(new Item("huevo de dragon", 10));
-        pasadizo.addItem(new Item("llave", 1));
-        pasilloSur.addItem(new Item("espada", 8));
-        pasilloNorte.addItem(new Item("pergamino", 0));
-        escaleras.addItem(new Item("tablon", 3));
+        mazmorras.addItem(new Item("pala", 5, true));
+        torturas.addItem(new Item("grilletes", 4, false));
+        bodega.addItem(new Item("vino", 1, true));
+        taberna.addItem(new Item("caliz", 1, true));
+        torreEste.addItem(new Item("silla", 7, false));
+        torreOeste.addItem(new Item("huevodragon", 10, false));
+        pasadizo.addItem(new Item("llave", 1, true));
+        pasilloSur.addItem(new Item("espada", 8, true));
+        pasilloNorte.addItem(new Item("pergamino", 0, true));
+        escaleras.addItem(new Item("tablon", 3, true));
 
         return escaleras;  // start game outside
     }
@@ -150,6 +150,15 @@ public class Game
         }
         else if(commandWord.equals("back")){
             player.back();
+        }
+        else if(commandWord.equals("take")){ 
+            player.take(command);
+        }
+        else if(commandWord.equals("drop")){
+            player.drop(command);
+        }
+        else if(commandWord.equals("items")){
+            player.items();
         }
 
         return wantToQuit;

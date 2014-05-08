@@ -76,6 +76,7 @@ public class Player
                 if(pesoTotal() +  item.getPeso() <= PESO_MAX){
                     items.add(item);
                     currentRoom.removeItem(item);
+                     System.out.println("Cogido el item");
                 }
                 else{
                     System.out.println("No puede llevar este objeto. Debe soltar algun objeto");
@@ -90,24 +91,28 @@ public class Player
         }
     }
 
-    public Item drop(Command command){
+    public void drop(Command command){
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
-            System.out.println("Take what?");
-            return null;
+            System.out.println("drop what?");
+            return;
         }
         Item item = getItem(command.getSecondWord());
 
-        items.remove(item);
-        
-        return item;
+        if(items.remove(item)){
+            currentRoom.addItem(item);
+            System.out.println("Soltado item");
+        } 
+        else {
+             System.out.println("No se encuentra el item");
+        }
     }
 
     public void items(){
         for(Item item : items){
             System.out.println(item.toString());
-            System.out.println("Peso total: " + pesoTotal());
         }
+        System.out.println("Peso total: " + pesoTotal());
     }
 
     private int pesoTotal(){
@@ -118,7 +123,7 @@ public class Player
         return peso;
     }
 
-    public Item getItem(String description){
+    private Item getItem(String description){
         for(Item item : items){
             if(item.getDescription().equals(description)){
                 return item;
@@ -127,7 +132,4 @@ public class Player
         return null;
     }
 
-    public Room getCurrentRoom(){
-        return currentRoom;
-    }
 }

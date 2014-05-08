@@ -75,10 +75,10 @@ public class Game
 
         mazmorras.addItem(new Item("pala", 5, true));
         torturas.addItem(new Item("grilletes", 4, false));
-        bodega.addItem(new Item("vino especiado", 1, true));
+        bodega.addItem(new Item("vino", 1, true));
         taberna.addItem(new Item("caliz", 1, true));
         torreEste.addItem(new Item("silla", 7, false));
-        torreOeste.addItem(new Item("huevo de dragon", 10, false));
+        torreOeste.addItem(new Item("huevodragon", 10, false));
         pasadizo.addItem(new Item("llave", 1, true));
         pasilloSur.addItem(new Item("espada", 8, true));
         pasilloNorte.addItem(new Item("pergamino", 0, true));
@@ -155,8 +155,7 @@ public class Game
             player.take(command);
         }
         else if(commandWord.equals("drop")){
-         
-            player.getCurrentRoom().addItem(player.drop(command));
+            player.drop(command);
         }
         else if(commandWord.equals("items")){
             player.items();

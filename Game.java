@@ -113,7 +113,7 @@ public class Game
         System.out.println();
         System.out.println("Welcome to the World of Zuul!");
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type 'help' if you need help.");
+        System.out.println("Type 'ayuda' if you need help.");
         System.out.println();
         player.printLocationInfo();
     }
@@ -133,31 +133,31 @@ public class Game
         }
 
         String commandWord = command.getCommandWord().toString();
-        if (commandWord.equals("HELP")) {
+        if (commandWord.equals("AYUDA")) {
             printHelp();
         }
-        else if (commandWord.equals("GO")) {
+        else if (commandWord.equals("VE")) {
             player.goRoom(command);
         }
-        else if (commandWord.equals("QUIT")) {
+        else if (commandWord.equals("SALIR")) {
             wantToQuit = quit(command);
         }
-        else if(commandWord.equals("LOOK")) {
+        else if(commandWord.equals("MIRAR")) {
             player.printLocationInfo();
         }
-        else if(commandWord.equals("EAT")){
+        else if(commandWord.equals("COMER")){
             player.eat();
         }
-        else if(commandWord.equals("BACK")){
+        else if(commandWord.equals("VOLVER")){
             player.back();
         }
-        else if(commandWord.equals("TAKE")){ 
+        else if(commandWord.equals("COGER")){ 
             player.take(command);
         }
-        else if(commandWord.equals("DROP")){
+        else if(commandWord.equals("DEJAR")){
             player.drop(command);
         }
-        else if(commandWord.equals("ITEMS")){
+        else if(commandWord.equals("OBJETOS")){
             player.items();
         }
 

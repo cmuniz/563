@@ -16,7 +16,7 @@ public class CommandWords
 {
     // a constant array that holds all valid command words
     private HashMap<String, Option> validCommands;
-    private static final String VALOR_DEFECTO = "unknown";
+    private static final String VALOR_DEFECTO = Option.UNKNOWN.toString();
 
     /**
      * Constructor - initialise the command words.
@@ -49,16 +49,15 @@ public class CommandWords
     }
 
     private void addCommands(){
-        validCommands.put("go", Option.GO);
-        validCommands.put("quit", Option.QUIT);
-        validCommands.put("help", Option.HELP);
-        validCommands.put("look", Option.LOOK);
-        validCommands.put("eat", Option.EAT);
-        validCommands.put("back", Option.BACK);
-        validCommands.put("take", Option.TAKE);
-        validCommands.put("drop", Option.DROP);
-        validCommands.put("items", Option.ITEMS);
-        validCommands.put("unknown", Option.UNKNOWN);
+        validCommands.put(Option.GO.toString().toLowerCase(), Option.GO);
+        validCommands.put(Option.QUIT.toString().toLowerCase(), Option.QUIT);
+        validCommands.put(Option.HELP.toString().toLowerCase(), Option.HELP);
+        validCommands.put(Option.LOOK.toString().toLowerCase(), Option.LOOK);
+        validCommands.put(Option.EAT.toString().toLowerCase(), Option.EAT);
+        validCommands.put(Option.BACK.toString().toLowerCase(), Option.BACK);
+        validCommands.put(Option.TAKE.toString().toLowerCase(), Option.TAKE);
+        validCommands.put(Option.DROP.toString().toLowerCase(), Option.DROP);
+        validCommands.put(Option.ITEMS.toString().toLowerCase(), Option.ITEMS);
     }
 
     /**
@@ -72,7 +71,7 @@ public class CommandWords
             return validCommands.get(commandWord);
         }
         else{
-            return validCommands.get("VALOR_DEFECTO");
+            return Option.UNKNOWN;
         }
     }
 }

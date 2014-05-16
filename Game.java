@@ -132,33 +132,39 @@ public class Game
             return false;
         }
 
-        String commandWord = command.getCommandWord().toString();
-        if (commandWord.equals("AYUDA")) {
+        Option commandWord = command.getCommandWord();
+
+        switch(commandWord) {
+            case AYUDA: 
             printHelp();
-        }
-        else if (commandWord.equals("VE")) {
+            break;
+            case VE: 
             player.goRoom(command);
-        }
-        else if (commandWord.equals("SALIR")) {
+            break;
+            case SALIR: 
             wantToQuit = quit(command);
-        }
-        else if(commandWord.equals("MIRAR")) {
+            break;
+            case MIRAR: 
             player.printLocationInfo();
-        }
-        else if(commandWord.equals("COMER")){
+            break;
+            case COMER:
             player.eat();
-        }
-        else if(commandWord.equals("VOLVER")){
+            break;
+            case VOLVER: 
             player.back();
-        }
-        else if(commandWord.equals("COGER")){ 
+            break;
+            case COGER: 
             player.take(command);
-        }
-        else if(commandWord.equals("DEJAR")){
+            break;
+            case DEJAR: 
             player.drop(command);
-        }
-        else if(commandWord.equals("OBJETOS")){
+            break;
+            case OBJETOS: 
             player.items();
+            break;
+            default: 
+            System.out.println("Desconocido");
+            break;
         }
 
         return wantToQuit;

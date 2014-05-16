@@ -54,24 +54,24 @@ public class Game
         // initialise room exits
         // (Room north, Room east, Room south, Room west, Room southEast, Room northWest) 
 
-        mazmorras.setExit("west", pasilloNorte);
-        bodega.setExit("south", taberna);
-        taberna.setExit("north", bodega);
-        taberna.setExit("south", pasilloNorte);
-        torreEste.setExit("west", pasilloSur);
-        torreEste.setExit("southeast", escaleras);
-        torreOeste.setExit("east", pasilloSur);
-        pasadizo.setExit("north", pasilloNorte);
-        pasadizo.setExit("south", pasilloSur);
-        pasilloSur.setExit("norht", pasadizo);
-        pasilloSur.setExit("east", torreEste);
-        pasilloSur.setExit("west", torreOeste);
-        pasilloNorte.setExit("north", taberna);
-        pasilloNorte.setExit("east", mazmorras);
-        pasilloNorte.setExit("south", pasadizo);
-        pasilloNorte.setExit("west", torturas);
+        mazmorras.setExit("oeste", pasilloNorte);
+        bodega.setExit("sur", taberna);
+        taberna.setExit("norte", bodega);
+        taberna.setExit("sur", pasilloNorte);
+        torreEste.setExit("oeste", pasilloSur);
+        torreEste.setExit("sureste", escaleras);
+        torreOeste.setExit("este", pasilloSur);
+        pasadizo.setExit("norte", pasilloNorte);
+        pasadizo.setExit("sur", pasilloSur);
+        pasilloSur.setExit("norte", pasadizo);
+        pasilloSur.setExit("este", torreEste);
+        pasilloSur.setExit("oeste", torreOeste);
+        pasilloNorte.setExit("norte", taberna);
+        pasilloNorte.setExit("este", mazmorras);
+        pasilloNorte.setExit("sur", pasadizo);
+        pasilloNorte.setExit("oeste", torturas);
         torturas.setExit("east", pasilloNorte);
-        escaleras.setExit("northwest", torreEste);
+        escaleras.setExit("noroeste", torreEste);
 
         mazmorras.addItem(new Item("pala", 5, true));
         torturas.addItem(new Item("grilletes", 4, false));
@@ -147,16 +147,16 @@ public class Game
             case MIRAR: 
             player.printLocationInfo();
             break;
-            case COMER:
+            case COME:
             player.eat();
             break;
             case VOLVER: 
             player.back();
             break;
-            case COGER: 
+            case COGE: 
             player.take(command);
             break;
-            case DEJAR: 
+            case DEJA: 
             player.drop(command);
             break;
             case OBJETOS: 

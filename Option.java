@@ -7,5 +7,24 @@
  */
 public enum Option
 {
-   VE, SALIR, AYUDA, MIRAR, COMER, VOLVER, COGER, DEJAR, OBJETOS, DESCONOCIDO
+    VE("ve"), 
+    SALIR("salir"),
+    AYUDA("ayuda"),
+    MIRAR("mirar"),
+    COME("come"),
+    VOLVER("volver"),
+    COGE("coge"),
+    DEJA("deja"),
+    OBJETOS("objetos"),
+    DESCONOCIDO("desconocido");
+    
+    private final String description;
+    
+    Option(String description){
+        this.description = description;
+    }
+    
+    public String getDescription(){
+        return description;
+    }
 }

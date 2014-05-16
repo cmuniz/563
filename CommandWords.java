@@ -15,16 +15,13 @@ import java.util.Set;
 public class CommandWords
 {
     // a constant array that holds all valid command words
-    private HashMap<String, Option> validCommands;
-    private static final String VALOR_DEFECTO = Option.DESCONOCIDO.toString();
 
     /**
      * Constructor - initialise the command words.
      */
     public CommandWords()
     {
-        validCommands = new HashMap<>();
-        addCommands();
+
     }
 
     /**
@@ -34,30 +31,23 @@ public class CommandWords
      */
     public boolean isCommand(String aString)
     {
-        return validCommands.containsKey(aString);
+        for(Option comando : Option.values()){
+            if(comando.getDescription().equals(aString)){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
      * Print all valid commands to System.out
      */
     public void showAll(){
-        Set<String> commands = validCommands.keySet();
-        for(String comando : commands){
-            System.out.print(comando + " ");
+
+        for(Option comando : Option.values()){
+            System.out.print(comando.getDescription() + " ");
         }
         System.out.println();
-    }
-
-    private void addCommands(){
-        validCommands.put(Option.VE.toString().toLowerCase(), Option.VE);
-        validCommands.put(Option.SALIR.toString().toLowerCase(), Option.SALIR);
-        validCommands.put(Option.AYUDA.toString().toLowerCase(), Option.AYUDA);
-        validCommands.put(Option.MIRAR.toString().toLowerCase(), Option.MIRAR);
-        validCommands.put(Option.COMER.toString().toLowerCase(), Option.COMER);
-        validCommands.put(Option.VOLVER.toString().toLowerCase(), Option.VOLVER);
-        validCommands.put(Option.COGER.toString().toLowerCase(), Option.COGER);
-        validCommands.put(Option.DEJAR.toString().toLowerCase(), Option.DEJAR);
-        validCommands.put(Option.OBJETOS.toString().toLowerCase(), Option.OBJETOS);
     }
 
     /**
@@ -67,11 +57,13 @@ public class CommandWords
      *         if it is not a valid command word.
      */
     public Option getCommandWord(String commandWord){
-        if(isCommand(commandWord)){
-            return validCommands.get(commandWord);
+
+        for(Option comando : Option.values()){
+            if(comando.getDescription().equals(commandWord)){
+                return comando;
+            }
         }
-        else{
-            return Option.DESCONOCIDO;
-        }
+
+        return Option.DESCONOCIDO; 
     }
 }

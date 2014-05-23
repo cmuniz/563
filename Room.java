@@ -59,7 +59,7 @@ public class Room
         }
         return null;
     }
-    
+
     public void removeItem(Item item){
         items.remove(item);
     }
@@ -101,7 +101,7 @@ public class Room
      * @return A description of the room, including exits.
      */
     public String getLongDescription(){
-        return "You are in the " + getDescription() + "\n" + getExitString() + "\n" + infoObjetos()        ;
+        return "You are in the " + getDescription() + "\n" + getExitString() + "\n" + infoObjetos();
     }
 
 }

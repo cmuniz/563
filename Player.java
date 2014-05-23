@@ -12,7 +12,7 @@ public class Player
     private Room currentRoom;
     private Stack<Room> previusRoom;
     private ArrayList<Item> items;
-    public static final int PESO_MAX = 15;
+    public static final int PESO_MAX = 5;
 
     public Player(Room currentRoom){
         this.currentRoom = currentRoom;
@@ -76,7 +76,7 @@ public class Player
                 if(pesoTotal() +  item.getPeso() <= PESO_MAX){
                     items.add(item);
                     currentRoom.removeItem(item);
-                     System.out.println("Cogido el item");
+                    System.out.println("Cogido el item");
                 }
                 else{
                     System.out.println("No puede llevar este objeto. Debe soltar algun objeto");
@@ -104,7 +104,7 @@ public class Player
             System.out.println("Soltado item");
         } 
         else {
-             System.out.println("No se encuentra el item");
+            System.out.println("No se encuentra el item");
         }
     }
 

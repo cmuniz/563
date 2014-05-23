@@ -63,7 +63,6 @@ public class CommandWords
                 return comando;
             }
         }
-
-        return Option.DESCONOCIDO; 
+        return Option.UNKNOWN; 
     }
 }

@@ -113,7 +113,7 @@ public class Game
         System.out.println();
         System.out.println("Welcome to the World of Zuul!");
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type 'ayuda' if you need help.");
+        System.out.println("Type '"+ Option.HELP.getDescription() + "' if you need help.");
         System.out.println();
         player.printLocationInfo();
     }
@@ -135,31 +135,31 @@ public class Game
         Option commandWord = command.getCommandWord();
 
         switch(commandWord) {
-            case AYUDA: 
+            case HELP: 
             printHelp();
             break;
-            case VE: 
+            case GO: 
             player.goRoom(command);
             break;
-            case SALIR: 
+            case QUIT: 
             wantToQuit = quit(command);
             break;
-            case MIRAR: 
+            case LOOK: 
             player.printLocationInfo();
             break;
-            case COME:
+            case EAT:
             player.eat();
             break;
-            case VOLVER: 
+            case BACK: 
             player.back();
             break;
-            case COGE: 
+            case TAKE: 
             player.take(command);
             break;
-            case DEJA: 
+            case DROP: 
             player.drop(command);
             break;
-            case OBJETOS: 
+            case ITEMS: 
             player.items();
             break;
             default: 

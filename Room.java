@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Room 
 {
     private String description;
-    private HashMap<String, Room> salidas;
+    private HashMap<String, Door> salidas;
     private ArrayList<Item> items;
     
 
@@ -40,8 +40,8 @@ public class Room
      * @param direction The direction of the exit.
      * @param neighbor The room in the given direction.
      */
-    public void setExit(String direction, Room neighbor){
-        salidas.put(direction, neighbor);
+    public void setExit(String direction, Room neighbor, boolean autocierre){
+        salidas.put(direction, new Door(neighbor, autocierre));
     }
 
     public void addItem(Item item){
@@ -74,7 +74,19 @@ public class Room
     }
 
     public Room getExit(String direction){
-        return salidas.get(direction);
+        Door door = salidas.get(direction);
+        if(door != null){
+            return door.getSalida();
+        }
+        return null;
+    }
+    
+    public void cerrarPuerta(String direction){
+        salidas.get(direction).cerrarPuerta();
+    }
+    
+    public boolean puertaCerrda(String direction){
+        return !salidas.get(direction).getAbierta();
     }
 
     /**

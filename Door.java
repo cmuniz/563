@@ -26,8 +26,12 @@ public class Door
             abierta = false;
         }
     }
-    
+
     public void setSalida(Room salida){
         this.salida = salida;
+    }
+
+    public boolean getAbierta(){
+        return abierta;
     }
 }

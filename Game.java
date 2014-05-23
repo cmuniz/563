@@ -54,24 +54,34 @@ public class Game
         // initialise room exits
         // (Room north, Room east, Room south, Room west, Room southEast, Room northWest) 
 
-        mazmorras.setExit("oeste", pasilloNorte);
-        bodega.setExit("sur", taberna);
-        taberna.setExit("norte", bodega);
-        taberna.setExit("sur", pasilloNorte);
-        torreEste.setExit("oeste", pasilloSur);
-        torreEste.setExit("sureste", escaleras);
-        torreOeste.setExit("este", pasilloSur);
-        pasadizo.setExit("norte", pasilloNorte);
-        pasadizo.setExit("sur", pasilloSur);
-        pasilloSur.setExit("norte", pasadizo);
-        pasilloSur.setExit("este", torreEste);
-        pasilloSur.setExit("oeste", torreOeste);
-        pasilloNorte.setExit("norte", taberna);
-        pasilloNorte.setExit("este", mazmorras);
-        pasilloNorte.setExit("sur", pasadizo);
-        pasilloNorte.setExit("oeste", torturas);
-        torturas.setExit("east", pasilloNorte);
-        escaleras.setExit("noroeste", torreEste);
+        mazmorras.setExit("oeste", pasilloNorte, true);
+        pasilloNorte.setExit("este", mazmorras, true);
+
+        pasilloSur.setExit("este", torreEste, false);
+        torreEste.setExit("oeste", pasilloSur, false);
+
+        torreOeste.setExit("este", pasilloSur, true);
+        pasilloSur.setExit("oeste", torreOeste, true);
+
+        pasilloNorte.setExit("oeste", torturas, false);       
+        torturas.setExit("este", pasilloNorte, false);
+
+        pasadizo.setExit("norte", pasilloNorte, false);
+        pasilloNorte.setExit("sur", pasadizo, false);
+
+        pasadizo.setExit("sur", pasilloSur, false);        
+        pasilloSur.setExit("norte", pasadizo, false);
+
+        pasilloNorte.setExit("norte", taberna, false);
+        taberna.setExit("sur", pasilloNorte, false);
+
+        bodega.setExit("sur", taberna, false);
+        taberna.setExit("norte", bodega, false);
+
+        torreEste.setExit("sureste", escaleras, false);
+        escaleras.setExit("noroeste", torreEste, false);
+        
+        
 
         mazmorras.addItem(new Item("pala", 5, true));
         torturas.addItem(new Item("grilletes", 4, false));

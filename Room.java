@@ -20,6 +20,7 @@ public class Room
     private String description;
     private HashMap<String, Room> salidas;
     private ArrayList<Item> items;
+    
 
     /**
      * Create a room described "description". Initially, it has

@@ -7,17 +7,31 @@
  */
 public class Door
 {
-    private Room salida;
+    private Room habitacion1;
+    private Room habitacion2;
+    //La puerta se cierra cuando el jugador pasa por ella una vez
     private boolean autocierre;
     private boolean abierta;
 
-    public Door(Room salida, boolean autocierre){
-        this.salida = salida;
+    public Door(Room habitacion1, Room habitacion2, boolean autocierre){
+        this.habitacion1 = habitacion1;
+        this.habitacion2 = habitacion2;
         this.autocierre = autocierre;
         abierta = true;
     }
-
-    public Room getSalida(){
+    
+    /**
+     * Devuelve la habitacion a la que sales si pasas por la puerta
+     * @param habitacionActual
+     */
+    public Room getSalida(Room habitacionActual){
+        Room salida;
+        if(habitacionActual == habitacion1){
+            salida = habitacion1;
+        }
+        else{
+            salida = habitacion2;
+        }
         return salida;
     }
 
@@ -25,10 +39,6 @@ public class Door
         if(autocierre){
             abierta = false;
         }
-    }
-
-    public void setSalida(Room salida){
-        this.salida = salida;
     }
 
     public boolean getAbierta(){

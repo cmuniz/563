@@ -26,11 +26,11 @@ public class Door
      */
     public Room getSalida(Room habitacionActual){
         Room salida;
-        if(habitacionActual == habitacion1){
-            salida = habitacion1;
+        if(habitacionActual.getDescription().equals(habitacion1.getDescription())){
+            salida = habitacion2;
         }
         else{
-            salida = habitacion2;
+            salida = habitacion1;
         }
         return salida;
     }

@@ -40,8 +40,8 @@ public class Room
      * @param direction The direction of the exit.
      * @param neighbor The room in the given direction.
      */
-    public void setExit(String direction, Room neighbor, boolean autocierre){
-        salidas.put(direction, new Door(neighbor, autocierre));
+    public void setExit(String direction, Door puerta){
+        salidas.put(direction, puerta);
     }
 
     public void addItem(Item item){
@@ -73,12 +73,8 @@ public class Room
         return description;
     }
 
-    public Room getExit(String direction){
-        Door door = salidas.get(direction);
-        if(door != null){
-            return door.getSalida();
-        }
-        return null;
+    public Door getPuerta(String direction){
+        return salidas.get(direction);
     }
     
     public void cerrarPuerta(String direction){

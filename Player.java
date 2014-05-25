@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Player
 {
     private Room currentRoom;
-    private Stack<Room> previusRoom;
+    private Stack<String> previusRoom;
     private ArrayList<Item> items;
     public static final int PESO_MAX = 5;
 
@@ -31,13 +31,18 @@ public class Player
             System.out.println("Go where?");
             return;
         }
-        Room nextRoom = currentRoom.getExit(command.getSecondWord());
+        String direction = command.getSecondWord();
+        Room nextRoom = currentRoom.getPuerta(direction).getSalida(currentRoom);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
+        else if(currentRoom.puertaCerrda(direction)){
+            System.out.println("La puerta esta cerrada");
+        }
         else {
-            previusRoom.push(currentRoom);
+            previusRoom.push(direccionOpuesta(direction));
+            currentRoom.cerrarPuerta(direction);
             currentRoom = nextRoom;
             printLocationInfo();
         }
@@ -53,8 +58,22 @@ public class Player
 
     public void back(){
         if(!previusRoom.empty()){
-            currentRoom = previusRoom.pop();
-            printLocationInfo();
+            String direction = previusRoom.pop();
+            if(!direction.equals("cerrada")){
+                if(!currentRoom.puertaCerrda(direction)){
+                    currentRoom = currentRoom.getPuerta(direction).getSalida(currentRoom);
+                    printLocationInfo();
+                }
+                else{
+                    System.out.println("La puerta está cerrada. No puede volver atrás");
+                    previusRoom.push("cerrada");
+                }
+            }
+            else{
+                System.out.println("La puerta está cerrada. No puede volver atrás");
+                previusRoom.push("cerrada");
+            }
+
         }
         else{
             System.out.println("No se puede ir más atrás. Ya está en el inicio");
@@ -130,6 +149,43 @@ public class Player
             }
         }
         return null;
+    }
+
+    private String direccionOpuesta(String direction){
+        String opoDirection = null;
+
+        if(direction.equals("sur")){
+            opoDirection = "norte";
+        }
+        else if(direction.equals("norte")){
+            opoDirection = "sur";
+        }
+        else if(direction.equals("este")){
+            opoDirection = "oeste";
+        }
+        else if(direction.equals("oeste")){
+            opoDirection = "este";
+        }
+        else if(direction.equals("sureste")){
+            opoDirection = "noroeste";
+        }
+        else if(direction.equals("suroeste")){
+            opoDirection = "noreste";
+        }
+        else if(direction.equals("noreste")){
+            opoDirection = "suroeste";
+        }
+        else if(direction.equals("noroeste")){
+            opoDirection = "sureste";
+        }
+        else if(direction.equals("abajo")){
+            opoDirection = "arriba";
+        }
+        else if(direction.equals("arriba")){
+            opoDirection = "abajo";
+        }
+
+        return opoDirection;
     }
 
 }

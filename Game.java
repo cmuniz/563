@@ -53,25 +53,47 @@ public class Game
 
         // initialise room exits
         // (Room north, Room east, Room south, Room west, Room southEast, Room northWest) 
+        
+        
+        
+        
+        Door puerta1 = new Door(mazmorras, pasilloNorte, true);
+        mazmorras.setExit("oeste", puerta1);
+        pasilloNorte.setExit("este", puerta1);
 
-        mazmorras.setExit("oeste", pasilloNorte);
-        bodega.setExit("sur", taberna);
-        taberna.setExit("norte", bodega);
-        taberna.setExit("sur", pasilloNorte);
-        torreEste.setExit("oeste", pasilloSur);
-        torreEste.setExit("sureste", escaleras);
-        torreOeste.setExit("este", pasilloSur);
-        pasadizo.setExit("norte", pasilloNorte);
-        pasadizo.setExit("sur", pasilloSur);
-        pasilloSur.setExit("norte", pasadizo);
-        pasilloSur.setExit("este", torreEste);
-        pasilloSur.setExit("oeste", torreOeste);
-        pasilloNorte.setExit("norte", taberna);
-        pasilloNorte.setExit("este", mazmorras);
-        pasilloNorte.setExit("sur", pasadizo);
-        pasilloNorte.setExit("oeste", torturas);
-        torturas.setExit("east", pasilloNorte);
-        escaleras.setExit("noroeste", torreEste);
+        Door puerta2 = new Door(pasilloSur, torreEste, false);
+        pasilloSur.setExit("este", puerta2);
+        torreEste.setExit("oeste",puerta2);
+
+        Door puerta3 = new Door(torreOeste, pasilloSur, true);
+        torreOeste.setExit("este", puerta3);
+        pasilloSur.setExit("oeste", puerta3);
+
+        Door puerta4 = new Door(pasilloNorte, torturas, false);
+        pasilloNorte.setExit("oeste", puerta4);       
+        torturas.setExit("este", puerta4);
+
+        Door puerta5 = new Door(pasadizo, pasilloNorte, false);
+        pasadizo.setExit("norte", puerta5);
+        pasilloNorte.setExit("sur", puerta5);
+
+        Door puerta6 = new Door(pasadizo, pasilloSur,false);
+        pasadizo.setExit("sur", puerta6);        
+        pasilloSur.setExit("norte", puerta6);
+
+        Door puerta7 = new Door(pasilloNorte, taberna, false);
+        pasilloNorte.setExit("norte", puerta7);
+        taberna.setExit("sur", puerta7);
+
+        Door puerta8 = new Door(bodega, taberna, false);
+        bodega.setExit("sur", puerta8);
+        taberna.setExit("norte", puerta8);
+
+        Door puerta9 = new Door(torreEste, escaleras, true);
+        torreEste.setExit("sureste", puerta9);
+        escaleras.setExit("noroeste", puerta9);
+        
+        
 
         mazmorras.addItem(new Item("pala", 5, true));
         torturas.addItem(new Item("grilletes", 4, false));
